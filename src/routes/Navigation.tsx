@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -7,49 +6,46 @@ import {
   Navigate
 } from 'react-router-dom';
 
-import { routes } from './routes';
-
 import logo from '../logo.svg';
+import { ShoppingPage } from '../02-component-petterns/pages/ShoppingPage';
  
 export const Navigation = () => {
   return (
-    <Suspense fallback={ <span>Loading...</span> }>
-
     <BrowserRouter>
       <div className="main-layout">
 
 
         <nav>
             <img src={ logo } alt="React Logo" />
-          <ul>
-            {
-              routes.map((route) => (
-                <li key={ route.to }>
-                  <NavLink to={ route.to } className={ ({isActive}) => isActive ? 'nav-active' : '' }>
-                    { route.name }
-                  </NavLink>
-                </li>
-              ))
-            }
-          </ul>
+
+            <ul>
+                  <li>
+                      <NavLink to="/" className={ ({isActive}) => isActive ? 'nav-active' : '' }>Shopping</NavLink> 
+                  </li>
+                  <li>
+                      <NavLink to="/about"className={ ({isActive}) => isActive ? 'nav-active' : '' } >About</NavLink> 
+                  </li>
+                  <li>
+                      <NavLink to="/users" className={ ({isActive}) => isActive ? 'nav-active' : '' }>Users</NavLink> 
+                  </li>
+              </ul>
         </nav>
 
 
 
-        <Routes>
-            {
-              routes.map((route) => (
-                <Route key={ route.to } path={ route.path } element={ <route.Component /> } />
-              ))
-              
-            }
-            <Route path="/*" element={ <Navigate to={ routes[0].to} replace /> } />
-        </Routes>
+            <Routes>
+                <Route path="/" element={ <ShoppingPage />} />
+                <Route path="/about" element={ <h1>About</h1>} />
+                <Route path="/users" element={ <h1>Users</h1>} />
+
+                {/* <Route path="*" element={ <div>Not Found</div> } /> */}
+                <Route path="*" element={ <Navigate replace to="/" /> } />
+            </Routes>
 
 
       </div>
     </BrowserRouter>
-    </Suspense>
+
 
   );
 }
