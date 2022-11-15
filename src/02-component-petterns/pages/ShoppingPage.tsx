@@ -1,4 +1,5 @@
 import { ProductCard, ProductImg, ProductTitle, ProductButtons  } from '../components';
+import '../styles/custom-styles.css';
 
 const product = {
     id: '1',
@@ -8,7 +9,7 @@ const product = {
 
 export const ShoppingPage = () => {
   return (
-    <div>
+    <div >
         <h1>Shopping store</h1>
         <hr />
 
@@ -19,29 +20,35 @@ export const ShoppingPage = () => {
 
         }}>
 
-            <ProductCard product={ product } >
-                <ProductCard.Img />
-                <ProductCard.Title title={ '' } />
-                <ProductCard.Buttons />
+            <ProductCard product={ product } className="bg-dark">
+                <ProductCard.Img className="custom-image"/>
+                <ProductCard.Title className="text-white"/>
+                <ProductCard.Buttons className="custom-button"/>
             </ProductCard>
+
+            <ProductCard 
+                product={ product }  
+                className="bg-dark"
+                style={{
+                    backgroundColor: '#70D1F8',
+                    textAlign: 'center',
+                }}>
+
+                <ProductImg
+                className="custom-image"
+                style={{ 
+                    borderRadius: '50%'
+,                   boxShadow: '0 0 10px #000'  
+                }}/>
+
+                <ProductTitle style={{ 
+                    fontFamily: 'Arial',
+                    fontWeight: 'bold',
+                    color: '#FFFFFF'
+                }}/>
+
+                <ProductButtons className="custom-button" style={{ display: 'flex', justifyContent: 'center'}}/>
             
-            <ProductCard product={ product } >
-                <ProductCard.Img />
-                <ProductCard.Title title={ 'Coffe dev :)' } />
-                <ProductCard.Buttons />
-            </ProductCard>
-
-            <ProductCard product={ product } >
-                <ProductCard.Img />
-                <ProductCard.Title />
-                <ProductCard.Buttons />
-            </ProductCard>
-
-
-            <ProductCard product={ product } >
-                <ProductImg />
-                <ProductTitle />
-                <ProductButtons />
             </ProductCard>
 
         </div>
